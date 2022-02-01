@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="css/style.css">
+<title>HHLA INFO</title>
+ </head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    <div class="main-ship">
+<h2 class="main-ship-h2">Next ship arrivals in Tallinn</h2>
+<script>
+    $(function() {
+        $.getJSON('https://x2.tk.ee/vesinfo/', function(data) {
+            method: "GET",
+            $.each(data, function(key, value) {
+                if (value.issuance) {
+                    $("<tr>" + "<td class='main-ship-data'>" + value.arrival + "</td>" +
+                        "<td class='main-ship-data'>" + value.name + "</td>" +
+                        "<td class='main-ship-data'>" + value.line + "</td>" +
+                        "<td class='main-ship-data'>" + value.issuance + "</td>" + "</tr>").appendTo('.main-ship-table');
+                }
+            });
+        });
+    });</script>
+
+
+<div>
+<table class="main-ship-table">
+    <tbody>
+        <tr class="main-ship-header">
+            <td>Arrival time</td>
+            <td>Vessel name</td>
+            <td>Line</td>
+            <td>Release</td>
+        </tr>
+        <tr>
+        <td class="main-ship-data">19.01.2022 09:45</td>
+        <td class="main-ship-data">CONTAINERSHIP VII</td>
+        <td class="main-ship-data">Containerships</td>
+        <td class="main-ship-data">19.01.2022 15:30</td>
+        </tr>
+        <tr>
+            <td class="main-ship-data">19.01.2022 19:30</td>
+            <td class="main-ship-data">MUNKSUND</td>
+            <td class="main-ship-data">UNIFEEDER</td>
+            <td class="main-ship-data">20.01.2022 08:00</td>
+        </tr>
+    </tbody>
+   </table>
+    </div>
+
+
+</div>
+</div>
+
+</body>
+</html>
